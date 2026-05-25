@@ -177,7 +177,7 @@ elif"Perfil" in page:
     k1.metric("Total encuestados", "114")
     k2.metric("Género femenino", "66.4 %", "75 personas")
     k3.metric("Estrato dominante", "Estrato 3", "53.1 %")
-    k4.metric("Edad promedio", "29.9 años", "mediana 25")
+    k4.metric("Edad promedio", "29 años", "mediana 25")
 
     st.divider()
     col1, col2, col3 = st.columns(3)
