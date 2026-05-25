@@ -98,7 +98,8 @@ with st.sidebar:
 ], label_visibility="collapsed")
     st.divider()
     st.caption("Paula Ríos · Caterine Quevedo · " \
-    "Profesor:Samir Neme\nUniversidad Santo Tomás")
+    "Profesor:Samir Neme\n" \
+    "Universidad Santo Tomás")
 
 # ── Title always shown ────────────────────────────────────────────────────────
 st.title("🌿 Percepción y Decisión de Viaje al Amazonas Colombiano")
@@ -167,7 +168,7 @@ if "Introducción" in page:
 # ═══════════════════════════════════════════════════════════
 # 1 — ¿QUIÉNES RESPONDIERON?
 # ═══════════════════════════════════════════════════════════
-if "Quiénes" in page:
+elif"Perfil" in page:
     st.subheader("👥 Perfil de los 114 encuestados")
     st.caption("Tablas de frecuencia · Caracterización sociodemográfica")
 
