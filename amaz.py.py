@@ -87,21 +87,82 @@ with st.sidebar:
     st.caption("Investigación de Mercados II · 2026-1")
     st.divider()
     page = st.radio("Navegación", [
-        "🌍  ¿Quiénes respondieron?",
-        "🔬  Instrumento (α y ω)",
-        "📊  Estadísticos descriptivos",
-        "🔗  Correlaciones de Pearson",
-        "📐  ANOVA",
-        "✅  Hipótesis & Chi²",
-        "🎯  Conclusiones",
-    ], label_visibility="collapsed")
+    "📌 1. Introducción y Objetivos",  # <-- Nueva pestaña inicial
+    "📊 2. Perfil de Encuestados",
+    "🔬 3. Fiabilidad del Instrumento",
+    "🔗 4. Correlaciones de Pearson",
+    "📐 5. Análisis ANOVA",
+    "✅ 6. Hipótesis & Chi²",
+    "📈 7. Hallazgos y Conclusiones", 
+    "🎮 8. Juego"
+], label_visibility="collapsed")
     st.divider()
-    st.caption("Paula Ríos · Caterine Quevedo · Samir Neme\nUniversidad Santo Tomás")
+    st.caption("Paula Ríos · Caterine Quevedo · " \
+    "Profesor:Samir Neme\nUniversidad Santo Tomás")
 
 # ── Title always shown ────────────────────────────────────────────────────────
 st.title("🌿 Percepción y Decisión de Viaje al Amazonas Colombiano")
 st.caption("Influencia de costos, miedos y confort en la intención de compra · Bogotá D.C. · n = 114")
 st.divider()
+
+# ═══════════════════════════════════════════════════════════
+# 1 — INTRODUCCIÓN Y OBJETIVOS (NUEVA PESTAÑA INICIAL)
+# ═══════════════════════════════════════════════════════════
+if "Introducción" in page:
+    st.title("🌍 Amazonas")
+    st.caption("Investigación de mercados sobre la intención de compra de los habitantes de Bogotá")
+    
+    # Aquí puedes poner una imagen de portada si quieres
+    st.image("https://wzlxbpicdcdvxvdcvgas.supabase.co/storage/v1/object/public/images/colombiatours/library/2017/03/bbc14d7620627984f58aa828e9a5fc02.jpg", use_container_width=True)
+    
+    st.divider()
+    
+    # Fila de Pregunta Problema y Objetivo General
+    c1, c2 = st.columns(2)
+    
+    with c1:
+        st.markdown("### 📌 PREGUNTA PROBLEMA")
+        st.info(
+            "¿Cómo influyen los costos percibidos, los miedos y el nivel de confort "
+            "en las percepciones generadas por la comunicación de marketing sobre el "
+            "turismo en el Amazonas, y de qué manera estos factores afectan la "
+            "intención de compra de los habitantes de Bogotá?"
+        )
+        
+    with c2:
+        st.markdown("### 🎯 OBJETIVO GENERAL")
+        st.success(
+            "Analizar la influencia de los costos percibidos, los miedos y el nivel "
+            "de confort en las percepciones generadas por la comunicación de marketing "
+            "sobre el turismo en el Amazonas y su impacto en la intención de compra "
+            "de los habitantes de Bogotá."
+        )
+        
+    st.divider()
+    
+    # Fila de Objetivos Específicos e Hipótesis
+    c3, c4 = st.columns(2)
+    
+    with c3:
+        st.markdown("### 📍 OBJETIVOS ESPECÍFICOS")
+        st.markdown("""
+        * **1.** Identificar la percepción sobre los costos del turismo en el Amazonas.
+        * **2.** Determinar los principales miedos asociados al destino.
+        * **3.** Evaluar la influencia del confort esperado en la percepción del destino.
+        * **4.** Analizar el impacto de la comunicación de marketing en la intención de compra.
+        * **5.** Examinar la relación entre costos, miedos, confort e intención de compra.
+        """)
+        
+    with c4:
+        st.markdown("### 📊 MARCO DE HIPÓTESIS")
+        with st.expander("🔎 Ver Hipótesis de Investigación (H1 a H4)", expanded=True):
+            st.markdown("""
+            * **H1:** Existe una relación significativa entre los **costos percibidos** y la intención de compra.
+            * **H2:** Existe una relación significativa entre los **miedos percibidos** y la intención de compra.
+            * **H3:** Existe una relación significativa entre el **nivel de confort esperado** y la intención de compra.
+            * **H4:** Existe una relación significativa entre la **comunicación de marketing** y la intención de compra.
+            """)
+        st.error("**❌ Hipótesis Nula (H0):** No existe una relación significativa entre los costos, miedos, confort y la intención de compra.")
 
 # ═══════════════════════════════════════════════════════════
 # 1 — ¿QUIÉNES RESPONDIERON?
@@ -538,12 +599,12 @@ elif "Hipótesis" in page:
         st.success("**Resumen:** Solo se acepta **H1b**. La hipótesis nula (H0) se rechaza únicamente para la dimensión de miedos.")
 
 # ═══════════════════════════════════════════════════════════
-# 7 — CONCLUSIONES (CORREGIDO Y SEGURO)
+# 7 — HALLAZGOS, CONCLUSIONES Y RECOMENDACIONES (UNIFICADO)
 # ═══════════════════════════════════════════════════════════
-elif "Conclusiones" in page:
+elif "Hallazgos" in page or "Conclusiones" in page:
     st.subheader("🎯 ¿Qué encontramos y qué recomendamos?")
 
-    # KPIs resumen
+    # 1. Bloque de KPIs Matemáticos de tu Tesis (Datos Seguros)
     k1, k2, k3, k4 = st.columns(4)
     k1.metric("Intención de compra", "5.30 / 7", "La más alta")
     k2.metric("Descartaron por miedo", "52.2 %", "59 personas")
@@ -552,51 +613,200 @@ elif "Conclusiones" in page:
 
     st.divider()
 
-    # Gráfica resumen — la paradoja
-    paradox_lbl = ['Intención alta\n(M=5.30)', '52% descartó\npor miedo', 'Miedos tienen\nefecto real (p<0.05)', 'Costos/Confort\nno significativos']
-    paradox_val = [5.30, 3.80, 3.20, 1.80]
-    paradox_clr = ['#52A96D', '#E8C97A', '#E07B54', '#2a4a33']
+    # Creamos sub-pestañas internas para organizar la exposición y sorprender al jurado
+    tab_hallazgos, tab_conclusiones, tab_recomenda = st.tabs([
+        "📈 Principales Hallazgos", 
+        "🧠 Conclusiones Académicas", 
+        "💡 Recomendaciones Gerenciales"
+    ])
 
-    fig = go.Figure(go.Bar(
-        x=paradox_val, y=paradox_lbl, orientation='h',
-        marker=dict(color=paradox_clr, line=dict(color='rgba(0,0,0,.3)', width=1)),
-        text=['M = 5.30', '52.2 % descartó', 'r=−0.25, p=0.007', 'p > 0.05'],
-        textposition='outside', textfont=dict(color=FC, size=12),
-        hovertemplate='%{y}: %{x}'
-    ))
-    
-    # CORRECCIÓN AQUÍ: Evitamos duplicar 'tickfont' pasando la configuración limpia
-    config_yaxis = ax()
-    config_yaxis['tickfont'] = dict(color=FC, size=12) # Fusionamos de forma segura tamaño y color
+    # ───────────────────────────────────────────────────────
+    # SUB-PESTAÑA 1: PRINCIPALES HALLAZGOS (Datos + Gráfico Seguro)
+    # ───────────────────────────────────────────────────────
+    with tab_hallazgos:
+        st.markdown("### Resultados más relevantes del análisis estadístico")
+        
+        # Insertamos tu gráfico exacto y corregido de la paradoja
+        paradox_lbl = ['Intención alta\n(M=5.30)', '52% descartó\npor miedo', 'Miedos tienen\nefecto real (p<0.05)', 'Costos/Confort\nno significativos']
+        paradox_val = [5.30, 3.80, 3.20, 1.80]
+        paradox_clr = ['#52A96D', '#E8C97A', '#E07B54', '#2a4a33']
 
-    fig.update_layout(**layout(h=300,
-        title=dict(text='La paradoja del Amazonas', font=dict(size=14, color=FC), x=.5),
-        xaxis=ax(range=[0, 9], showticklabels=False),
-        yaxis=config_yaxis
-    ))
-    st.plotly_chart(fig, use_container_width=True)
+        fig = go.Figure(go.Bar(
+            x=paradox_val, y=paradox_lbl, orientation='h',
+            marker=dict(color=paradox_clr, line=dict(color='rgba(0,0,0,.3)', width=1)),
+            text=['M = 5.30', '52.2 % descartó', 'r=−0.25, p=0.007', 'p > 0.05'],
+            textposition='outside', textfont=dict(color=FC, size=12),
+            hovertemplate='%{y}: %{x}'
+        ))
+        
+        config_yaxis = ax()
+        config_yaxis['tickfont'] = dict(color=FC, size=12)
 
-    st.warning("**La paradoja:** Los bogotanos *quieren* ir al Amazonas (intención alta, M=5.30) pero *no van* (52% lo descartó). No es un problema de precio ni infraestructura — es una barrera de percepción construida culturalmente.")
+        fig.update_layout(**layout(h=280,
+            title=dict(text='La paradoja del Amazonas', font=dict(size=14, color=FC), x=.5),
+            xaxis=ax(range=[0, 9], showticklabels=False),
+            yaxis=config_yaxis
+        ))
+        st.plotly_chart(fig, use_container_width=True)
 
+        st.warning("**La paradoja analizada:** Los bogotanos *quieren* ir al Amazonas (intención alta, M=5.30) pero *no van* (52.2% lo descartó). El análisis demuestra que no es un problema de precio ni de infraestructura, sino una barrera de percepción construida culturalmente.")
+        
+        st.markdown("""
+        * **Validación Científica:** Los miedos percibidos fueron la **única** variable con relación significativa frente a la intención de compra (Aceptando **H1b**).
+        * **Foco del problema:** Los principales miedos de la muestra se relacionan de forma directa con la fauna peligrosa y el contagio de enfermedades tropicales.
+        * **Variables Descartadas:** Costos, confort y marketing tradicional **no** mostraron relación estadísticamente significativa ($p > 0.05$).
+        """)
+
+    # ───────────────────────────────────────────────────────
+    # SUB-PESTAÑA 2: CONCLUSIONES ACADÉMICAS
+    # ───────────────────────────────────────────────────────
+    with tab_conclusiones:
+        st.markdown("### Conclusiones de la Tesis")
+        
+        c_a, c_b = st.columns(2)
+        with c_a:
+            st.error("🔒 **El Miedo como Barrera:** El miedo es la principal barrera psicológica que frena y congela la intención de compra turística hacia el Amazonas.")
+            st.markdown("🎭 **Psicología vs Economía:** Las percepciones emocionales e imaginarios de riesgo influyen mucho más que las variables económicas de precio.")
+        with c_b:
+            st.warning("❓ **Incertidumbre Operacional:** El consumidor bogotano presenta altos niveles de duda frente a la seguridad física y condiciones de salubridad del destino.")
+            st.markdown("📢 **Falla de Marketing:** La comunicación publicitaria actual no logra mitigar las percepciones negativas ni aclarar las dudas reales del cliente.")
+            
+        st.markdown("> 📌 **Conclusión Macro:** El Amazonas continúa siendo evaluado por el mercado potencial de Bogotá desde imaginarios arcaicos de peligro y desconocimiento total de su infraestructura actual.")
+
+    # ───────────────────────────────────────────────────────
+    # SUB-PESTAÑA 3: RECOMENDACIONES (Tus 5 Puntos Estructurados)
+    # ───────────────────────────────────────────────────────
+    with tab_recomenda:
+        st.markdown("### Recomendaciones Estratégicas y Propuesta de Valor")
+        st.write("Estrategias concretas para transformar los hallazgos estadísticos en decisiones gerenciales:")
+
+        recos = [
+            ("🎯 1. Campaña Anti-Miedo",
+             "Diseñar contenidos multimedia enfocados explícitamente en desmitificar la fauna, las enfermedades y la seguridad con evidencia real: videos de guías locales, estadísticas de visitas y testimonios reales de viajeros."),
+            ("🌐 2. Visibilidad y Respaldo a Guías Nativos",
+             "Crear y fortalecer perfiles digitales verificados para los guías locales. Su conocimiento ancestral y técnico es el factor de confianza diferencial que las agencias tradicionales de Bogotá no pueden replicar."),
+            ("💵 3. Transparencia Absoluta de Precios",
+             "Publicar comparativos y presupuestos claros en los canales de venta (transporte + hospedaje + alimentación). Eliminar las tarifas ocultas anula la percepción de riesgo económico."),
+            ("🏛️ 4. Alianzas Estratégicas con ProColombia / Fontur",
+             "Estructurar campañas institucionales de educación y sentido de pertenencia nacional. Posicionar al Amazonas como un orgullo biodiverso colombiano y no solo como un destino de nicho o lujo inaccesible."),
+            ("📱 5. Presencia Digital Sostenida",
+             "Mientras destinos como Cartagena o San Andrés tienen campañas permanentes, el Amazonas requiere de una estrategia de recordación de marca constante en canales digitales para competir formalmente por el mercado bogotano."),
+        ]
+        
+        # Desplegables interactivos para la sustentación
+        for ico_tit, desc in recos:
+            with st.expander(ico_tit):
+                st.write(desc)
+
+    # Cierre de la página con los créditos institucionales
     st.divider()
-    st.write("**5 recomendaciones concretas**")
+    st.markdown("<p style='text-align:center; font-weight:bold; color:#52A96D;'>\"El Amazonas no se viene a conocer, se viene a vivir.\"</p>", unsafe_allow_html=True)
+    st.caption("<p style='text-align:center; color:#64748b;'>Paula Ríos · Caterine Quevedo </p>", unsafe_allow_html=True)
 
-    recos = [
-        ("🎯 Campaña anti-miedo",
-         "Contenido que desmitifique fauna, enfermedades y seguridad con evidencia real: videos de guías locales, estadísticas, testimonios de viajeros."),
-        ("🌐 Visibilidad de guías nativos",
-         "Crear perfiles digitales verificados para guías locales. Su conocimiento ancestral es el diferencial que las agencias tradicionales no pueden replicar."),
-        ("💵 Transparencia de precios",
-         "Publicar comparativos claros (transporte + hospedaje + alimentación). Eliminar la incertidumbre que genera percepción de riesgo económico."),
-        ("🏛️ Alianzas con ProColombia / Fontur",
-         "Campañas de educación y sentido de pertenencia nacional. El Amazonas como orgullo colombiano, no solo destino de lujo."),
-        ("📱 Presencia digital constante",
-         "Cartagena y San Andrés tienen campañas permanentes. El Amazonas necesita recordación de marca sostenida para competir."),
+# ═══════════════════════════════════════════════════════════
+# 8 — TRIVIA INTERACTIVA: MITOS Y REALIDADES (DESORDENADO)
+# ═══════════════════════════════════════════════════════════
+elif "Simulador" in page or "Juego" in page:
+    st.subheader("🎮 Trivia Interactiva: Rompiendo los Mitos del Amazonas")
+    st.caption("Demostrar cómo los sesgos cognitivos y los mitos urbanos moldean el miedo del consumidor.")
+
+    # Banco de 10 preguntas totalmente mezclado en su orden
+    preguntas = [
+        {
+            "id": 1,
+            "pregunta": "Si te metes al río Amazonas, ¿las pirañas te atacarán y morderán de inmediato?",
+            "correcta": "No",
+            "explicacion": "¡Mito de Hollywood! Las pirañas son animales mayormente carroñeros o asustadizos. Los nativos y turistas se bañan constantemente en el río; los ataques reales solo ocurren en condiciones extremas de sequía y con sangre fresca de por medio."
+        },
+        {
+            "id": 2,
+            "pregunta": "Si viajas, ¿es un requisito real y obligatorio tener la vacuna contra la Fiebre Amarilla para ingresar al departamento del Amazonas?",
+            "correcta": "Sí",
+            "explicacion": "¡Esto es una realidad legal! Las autoridades aeroportuarias la exigen debido a que el virus es antes que nada endémico en zonas selváticas. Estar vacunado anula por completo el peligro real de contagio."
+        },
+        {
+            "id": 3,
+            "pregunta": "Si realizas una caminata guiada por la selva, ¿existe una alta probabilidad de ser atacado por una anaconda o serpiente?",
+            "correcta": "No",
+            "explicacion": "¡Falso! Las anacondas viven en zonas profundas de pantanos y lagunas aisladas. Le huyen por completo al ruido de las botas de los turistas y es extremadamente raro ver una en los tours estándar."
+        },
+        {
+            "id": 4,
+            "pregunta": "¿Es cierto que durante la época de lluvias, cuando el río se desborda, los caimanes pueden nadar e incluso caminar muy cerca de las plataformas de los eco-lodges flotantes?",
+            "correcta": "Sí",
+            "explicacion": "¡Totalmente cierto! El agua sube hasta el nivel de las cabañas. Sin embargo, los hoteles conocen esto perfectamente y construyen mallas y barandas de seguridad altas. Verlos de cerca es seguro y controlado si respetas el perímetro."
+        },
+        {
+            "id": 5,
+            "pregunta": "Respecto a los caimanes en los lagos y ríos, ¿apenas ven un bote o un turista saltan agresivamente a atacar?",
+            "correcta": "No",
+            "explicacion": "¡Falso! Son animales de hábitos nocturnos que permanecen inmóviles o se sumergen para esconderse si notan presencia humana. El tour nocturno consiste en buscarlos porque ellos intentan pasar desapercibidos."
+        },
+        {
+            "id": 6,
+            "pregunta": "Durante las caminatas, ¿es verdad que existen árboles con espinas gigantes de más de 10 centímetros o plantas venenosas que no se deben tocar bajo ninguna circunstancia?",
+            "correcta": "Sí",
+            "explicacion": "¡Totalmente cierto! Árboles como la Chonta tienen espinas muy duras y bacterias que infectan rápido, y hay plantas que queman la piel. Por eso es obligatorio caminar con un guía nativo y no agarrarse de cualquier vegetación."
+        },
+        {
+            "id": 7,
+            "pregunta": "Sobre las condiciones sanitarias de los alimentos: ¿La comida del Amazonas carece de estándares de calidad e higiene y te hará daño?",
+            "correcta": "No",
+            "explicacion": "¡Falso! Los hoteles y restaurantes turísticos están regulados por el Invima y las secretarías de salud de igual forma que en Bogotá. El sector cuida rigurosamente el agua y los alimentos para proteger al turista."
+        },
+        {
+            "id": 8,
+            "pregunta": "¿Es verdad que en el río Amazonas existe un pez diminuto y transparente (el Candirú) que puede ingresar al cuerpo humano por los orificios íntimos si alguien se orina dentro del agua?",
+            "correcta": "Sí",
+            "explicacion": "¡Es real! El Candirú es un pez parásito atraído por la urea. Aunque los casos en turistas tienden a cero, es una verdad médica. La prevención es simple: jamás orinar dentro del río y usar traje de baño adecuado."
+        },
+        {
+            "id": 9,
+            "pregunta": "Al adentrarte a una caminata enla selva con un guía, ¿existe un riesgo real y alto de ser atacado por un jaguar?",
+            "correcta": "No",
+            "explicacion": "¡Mito derribado! El jaguar es el felino más sigiloso de América y le huyen por completo al olor y ruido humano. Los mismos guías nativos pasan años en la selva sin ver uno solo. El riesgo de ataque a turistas tiende a cero."
+        },
+        {
+            "id": 10,
+            "pregunta": "¿El clima en el Amazonas es tan insoportablemente sofocante y lleno de calor que impide disfrutar las actividades del viaje?",
+            "correcta": "No",
+            "explicacion": "¡Sorpresa! Aunque es un entorno tropical húmedo, la gigantesca cobertura de árboles de la selva actúa como un regulador térmico natural. El dosel forestal tapa el sol directo y las brisas del río hacen que las caminatas bajo la sombra sean muy frescas."
+        }
     ]
-    for ico_tit, desc in recos:
-        with st.expander(ico_tit):
-            st.write(desc)
+
+    # Inicializamos variables en la memoria de la sesión de Streamlit para controlar el juego
+    if 'respuestas_usuario' not in st.session_state:
+        st.session_state.respuestas_usuario = {}
+
+    # Renderizar las 10 preguntas con solo Sí y No
+    for p in preguntas:
+        st.markdown(f"<p style='font-weight:600; color:#FC; margin-top:15px;'>Pregunta {p['id']}: {p['pregunta']}</p>", unsafe_allow_html=True)
+        
+        # Únicamente opciones "Sí" y "No" para todas las preguntas
+        opcion_sel = st.radio(
+            "Selecciona una opción:",
+            ["Sí", "No"],
+            key=f"p_{p['id']}",
+            index=None, # Inicia limpio sin marcar nada
+            label_visibility="collapsed"
+        )
+
+        # Cuando el usuario da clic, se revela la sorpresa y la explicación
+        if opcion_sel:
+            st.session_state.respuestas_usuario[p['id']] = opcion_sel
+            if opcion_sel == p["correcta"]:
+                st.success(f"🍏 ¡Correcto! {p['explicacion']}")
+            else:
+                st.error(f"🍎 ¡Sorpresa! La respuesta correcta es {p['correcta']}. {p['explicacion']}")
 
     st.divider()
-    st.markdown("> *\"El Amazonas no se viene a conocer, se viene a vivir.\"*")
-    st.caption("— Guías locales del Amazonas colombiano")
+    
+    # Conteo final dinámico
+    puntos_totales = sum(1 for idx, p in enumerate(preguntas) if st.session_state.respuestas_usuario.get(p['id']) == p['correcta'])
+    
+    st.markdown(f"### 🏆 Marcador Final: {puntos_totales} / 10 aciertos")
+    if puntos_totales == 10:
+        st.balloons()
+        st.success("¡Perfecto!")
+    elif puntos_totales >= 7:
+        st.info("¡Muy bien!")
